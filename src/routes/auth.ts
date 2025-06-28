@@ -2,7 +2,7 @@
 import { Router, Request, Response, NextFunction } from 'express';
 import pool from '../config/db';
 
-const router = Router(); // ✅ CORRECT way to initialize a router
+const router = Router();
 
 router.post('/', async (req: Request, res: Response, next: NextFunction) => {
   try {
@@ -26,10 +26,11 @@ router.post('/', async (req: Request, res: Response, next: NextFunction) => {
 
     const user = userResult.rows[0];
 
+    // ✅ Change username to user.id for login_details
     await pool.query(
-      `INSERT INTO login_details (username, device_id, location_lat, location_lng, login_time)
+      `INSERT INTO login_details (user_id, device_id, location_lat, location_lng, login_time)
        VALUES ($1, $2, $3, $4, NOW())`,
-      [username, device_id, location_lat, location_lng]
+      [user.id, device_id, location_lat, location_lng]
     );
 
     res.status(200).json({
