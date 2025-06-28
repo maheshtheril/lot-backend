@@ -9,7 +9,7 @@ import purchasesRoutes from './routes/purchases'; // ✅ correct
 import purchaseItemRoutes from './routes/purchase_items';
 import loginCheckRouter from './routes/login_check';
 import loginHistoryRouter from './routes/login_history';
-import authRoutes from './routes/login'; // ✅ auth route
+import authRoutes from './routes/auth'; // ✅ auth route
 
 dotenv.config();
 
