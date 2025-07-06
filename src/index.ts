@@ -1,4 +1,3 @@
-// src/index.ts
 import express from 'express';
 import cors from 'cors';
 import dotenv from 'dotenv';
@@ -12,6 +11,11 @@ app.use(cors());
 app.use(express.json());
 
 app.use('/users', userRoutes);
+
+// ✅ Add this:
+app.get('/', (req, res) => {
+  res.send('✅ Backend is running! Use /users/top-level to test.');
+});
 
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
